@@ -1,0 +1,71 @@
+<configuration scan="true" scanPeriod="30 seconds">
+    <jmxConfigurator/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date [%thread] %-5level %class.%method - %X{rule} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="Biz.Log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/logs/jia/usercenter-bss.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/logs/jia/usercenter-bss-%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %class.%method - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SQL.Log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/logs/jia/sql.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/logs/jia/sql-%d{yyyyMMddHH}.log</fileNamePattern>
+            <maxHistory>240</maxHistory>
+        </rollingPolicy>
+        <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %class.%method - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="Springframework.Log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/logs/jia/springframework.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/logs/jia/springframework-%d{yyyyMMddHH}.log</fileNamePattern>
+            <maxHistory>240</maxHistory>
+        </rollingPolicy>
+        <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %class.%method - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="Biz.Log"/>
+    </root>
+
+    <logger name="org.mybatis.spring" level="INFO" additivity="false">
+        <appender-ref ref="Springframework.Log"/>
+    </logger>
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="Springframework.Log"/>
+    </logger>
+    <logger name="org.springframework.jdbc" level="INFO" additivity="false">
+        <appender-ref ref="Springframework.Log"/>
+    </logger>
+    <logger name="com.esther.jia.dao" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.esther.jia" level="DEBUG"/>
+    <logger name="com.alibaba" level="ERROR"/>
+    <logger name="org.apache.zookeeper" level="ERROR"/>
+    <logger name="com.alibaba.druid.pool" level="ERROR"/>
+
+</configuration>

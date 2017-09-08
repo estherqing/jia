@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jia-web:war">
+    <output-path>$PROJECT_DIR$/jia-web/target</output-path>
+    <root id="archive" name="jia-web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="jia-web:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.cheguo:api:0.0.1-c-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/cheguo/api/0.0.1-c-SNAPSHOT/api-0.0.1-c-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/cheguo/api/0.0.1-c-SNAPSHOT/api-0.0.1-c-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/cheguo/api/0.0.1-c-SNAPSHOT/api-0.0.1-c-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

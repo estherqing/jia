@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<head>
+	<link rel="stylesheet" href="../../../common/plugs/viewer/css/viewer.min.css">
+</head>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Expires" CONTENT="0">
+		<meta http-equiv="Cache-Control" CONTENT="no-cache">
+		<meta http-equiv="Pragma" CONTENT="no-cache">
+		<title>初评登记</title>
+	</head>
+	<body class="gray-bg">
+		<div class="row">
+			<div class="col-xs-24 col-sm-24 col-md-24">
+				<div class="ibox float-e-margins">
+					<input type="hidden" id="secondHandCarId">
+					<form id="registeredForm" class="form-horizontal secondCarAssessment">
+						<input type="hidden" name="id">
+						<input type="hidden" name="secondHandCarInfoId">
+						<div class="panel panel-default customer hide">
+							<div class="panel-heading">
+								<h3 class="panel-title">客户基本信息</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">证件类型：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<select name="cardType" class="form-control" required="" aria-required="true">
+												<option value="">--请选择--</option>
+												<option value="1">身份证</option>
+												<option value="2">军官证</option>
+												<option value="3">侨胞证</option>
+												<option value="4">外籍人士</option>
+											</select>
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">证件号码：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="cardNum" placeholder="请输入证件号码"  class="form-control required">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="customerName" placeholder="请输入客户名称" class="form-control required">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default assessmentResult hide">
+							<div class="panel-heading">
+								<h3 class="panel-title">客户基本信息</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">客户姓名：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="customerName" readonly="readonly" class="form-control">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款产品：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<select name="loanType" class="form-control" disabled="disabled">
+												<option value="5">车主再分期</option>
+												<option value="6">车价贷</option>
+											</select>
+											<!--<input type="text"  name="loanTypeName" readonly="readonly"  class="form-control">-->
+											<input type="hidden" name="loanType">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default essential hide">
+							<div class="panel-heading">
+								<h3 class="panel-title">车辆基本信息</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group form-group-sm">
+								    <div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">二手车评估单号：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="estimateNum" placeholder="请输入二手车评估单号" readonly="readonly" class="form-control">
+										</div>
+									</div>
+									<div class="input-tip" id="cooBank">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">合作银行：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5">
+										<input name="secondCarBankName" class="form-control hide" placeholder="请输入合作银行" id="secondCarBankName" value="" readonly>
+										<select name="secondCarBankId" id="bankId" class="form-control required">
+											<option value="">--请选择--</option>
+										</select>
+									</div>
+								</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*&nbsp;</span>购车地址：</label>
+										<input type="text" name="provinceName" hidden>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<select name="provinceCode" class="form-control required" id="carProvince">
+
+											</select>
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*&nbsp;</span>市/区：</label>
+										<input type="text" name="cityName" hidden>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<select name="cityCode" class="form-control required" id="carCity">
+
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">车架号码：</label>
+										<div class="col-xs-8 col-sm-8 col-md-8">
+											<div class="input-group input-group-sm">
+												<input type="text" name="carIdentifyNum" placeholder="请输入车架号码" class="form-control" required="" aria-required="true">
+												<span class="input-group-btn">
+													<button class="btn btn-primary" type="button" id="frameSearch">二手车参考价</button>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="input-tip  trimName hide">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">车型：</label>
+										<div class="col-md-5 col-xs-5 col-sm-5">
+											<select name="vinCarInfoList" id="vinCarType" class="form-control">
+
+											</select>
+										</div>
+
+									</div>
+								</div>
+								<div class="form-group form-group-sm frameImg" >
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">车架号照片：</label>
+										<!--<div class="col-xs-21 col-sm-21 col-md-8">-->
+
+										<!--</div>-->
+										<ul class="col-md-21 col-sm-21 col-lg-21 col-xs-21 list-inline files-ul" id="frameImg" data-type="801">
+											<!--<li><img src="" alt=""></li>-->
+											<!--<li><img src="../../../images/code.jpg" alt=""></li>-->
+										</ul>
+									</div>
+								</div>
+								<fieldset  id="frameVin" disabled="disabled">
+									<div class="form-group form-group-sm">
+										<div class="input-tip">
+											<label class="col-xs-3 col-sm-3 col-md-3 control-label">车辆品牌：</label>
+											<div class="col-xs-5 col-sm-5 col-md-5">
+												<input type="hidden" name="carBrandKey">
+												<input name="carBrand" class="form-control required" id="getBrand" placeholder="--请选择--" >
+												<!--<select name="carBrandKey" class="form-control carSelect" fors="carBrand" id="getBrand" data-next="1" required="" aria-required="true">-->
+												<!--<option value="0">&#45;&#45;请选择&#45;&#45;</option>-->
+											<!--</select>-->
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">车系：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="hidden" name="carSeriesKey">
+											<input name="carSeriesName" class="form-control carSelect required" id="getCarList" placeholder="--请选择--">
+											<!--<input type="hidden" name="carSeriesName">-->
+											<!--<select name="carSeriesKey" class="form-control carSelect" fors="carSeriesName" id="getCarList" data-next="2" required="" aria-required="true">-->
+												<!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+											<!--</select>-->
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">车型：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<!--<input type="hidden" name="carModeName">-->
+											<!--<select name="carModelKey" class="form-control carSelect" fors="carModeName" id="getCarModel" required="" aria-required="true">-->
+												<!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+											<!--</select>-->
+											<input type="hidden" name="msrp">
+											<input type="hidden" name="carModelKey">
+											<input name="carModeName" class="form-control carSelect required"  id="getCarModel" placeholder="--请选择--">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">出厂日期：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="factoryTime" placeholder="请输入出厂日期" class="form-control date">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">发动机号：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="engineNo"  placeholder="请输入发动机号" class="form-control">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">车身颜色：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="carColour" placeholder="请输入车身颜色" class="form-control" required="" aria-required="true">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<!--<div class="input-tip">-->
+										<!--<label class="col-xs-3 col-sm-3 col-md-3 control-label">现行新车价(元)：</label>-->
+										<!--<div class="col-xs-5 col-sm-5 col-md-5">-->
+											<!--<input type="text" name="newCarPrice" placeholder="请输入现行新车价" class="form-control number" required="" aria-required="true">-->
+										<!--</div>-->
+									<!--</div>-->
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">新车优惠价(元)：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="newCarPrice" placeholder="请输入新车优惠价" class="form-control number" required="" aria-required="true">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">二手车参考价(元)：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="secondHandCarRefPrice" placeholder="请输入二手参考价" class="form-control number">
+										</div>
+									</div>
+								</div>
+								</fieldset>
+
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">二手车销售价(元)：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="secondHandCarPrice" placeholder="请输入二手车销售价" class="form-control number" required="" aria-required="true">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">上牌时间：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="licenseDate" placeholder="请输入上牌时间" class="form-control date" required="" aria-required="true">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">里程数(公里)：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="kilometres" id="kilometres" placeholder="请输入里程数" class="form-control required number" required="" aria-required="true">
+										</div>
+									</div>
+
+								</div>
+								<div class="form-group form-group-sm">
+									<!--<div class="input-tip">-->
+										<!--<label class="col-xs-3 col-sm-3 col-md-3 control-label">车架号码：</label>-->
+										<!--<div class="col-xs-5 col-sm-5 col-md-5">-->
+											<!--<input type="text" name="carIdentifyNum" placeholder="请输入车架号码" class="form-control" required="" aria-required="true">-->
+										<!--</div>-->
+									<!--</div>-->
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">商业险到期日：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="commercialInsuranceExpiredDate" placeholder="请输入商业险到期日" class="form-control date" required="" aria-required="true">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">交强险到期日：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="trafficCompulsoryInsuranceExpiredDate" placeholder="请输入交强险到期日" class="form-control date" required="" aria-required="true">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">备注：</label>
+									<div class="col-xs-21 col-sm-21 col-md-21">	
+										<textarea name="memo" rows="3" class="form-control" aria-required="true" required="" aria-required="true"></textarea>
+									</div>				
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default preliminary hide">
+							<div class="panel-heading">
+								<h3 class="panel-title">初评报告</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">评估结果来源：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="hidden" id="firstEstimateSourceName" name="firstEstimateSourceName">
+											<select name="firstEstimateSourceKey" id="firstEstimateSourceKey"class="form-control required">
+												<option value>--请选择--</option>
+												<option value="1">公司自营</option>
+												<option value="2">第三方评测机构</option>
+											</select>
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">初评师：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="hidden" name="firstEstimateUserId">
+											<input type="text" name="firstEstimateUserName" placeholder="请输入初评师"  class="form-control" required="" aria-required="true">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">初评价格(元)：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="firstEstimatePrice" placeholder="请输入初评价格" class="form-control required number" required="" aria-required="true">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm hide thirdParty">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">原评估单号：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="originalEstimateNum" placeholder="请输入原评估单号" class="form-control number" required="" aria-required="true">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">评估机构：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="hidden" name="estimateOrganizationKey">
+											<input type="text" name="estimateOrganizationName" placeholder="请输入评估机构" readonly="readonly" class="form-control" required="" aria-required="true">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">初评描述：</label>
+									<div class="col-xs-21 col-sm-21 col-md-21">	
+										<textarea name="firstEstimateDesc" rows="3" class="form-control" aria-required="true" required="" aria-required="true"></textarea>
+									</div>	
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default hide results">
+							<div class="panel-heading">
+								<h3 class="panel-title">复评结果</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">复评师：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="hidden" name="secondEstimateUserName">
+											<select name="secondEstimateUserId" id="loanLaunchDate" class="form-control loanLaunchDate" required="" aria-required="true">
+												<option value="0">--请选择--</option>
+											</select>
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">复评价格(元)：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="secondEstimatePrice" placeholder="请输入复评价格"  class="form-control number" required="" aria-required="true">
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">最高评估书价格(元)：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="invoicePrice" placeholder="请输入最高评估书价格"  class="form-control number" required="" aria-required="true">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">复评描述：</label>
+									<div class="col-xs-21 col-sm-21 col-md-21">	
+										<textarea name="secondEstimateDesc" rows="3" class="form-control" aria-required="true" required="" aria-required="true"></textarea>
+									</div>	
+								</div>
+							</div>
+						</div>
+                        <div class="panel panel-default hide assessmentResult">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">评估结果</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>评估师：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5">
+                                            <input type="hidden" name="secondEstimateUserName">
+                                            <select name="secondEstimateUserId" class="form-control loanLaunchDate required">
+                                                <option value="">--请选择--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>评估价格(元)：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5">
+                                            <input type="text" name="secondEstimatePrice" placeholder="请输入复评价格"  class="form-control number required">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 control-label">最高评估书价格(元)：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5">
+                                            <input type="text" name="invoicePrice" placeholder="请输入最高评估书价格"  class="form-control number" required="" aria-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>车况：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5">
+                                            <select name="conditionType" class="form-control required">
+                                                <option value="">--请选择--</option>
+                                                <option value="1">正常</option>
+                                                <option value="2">大事故车</option>
+                                                <option value="3">水泡车</option>
+                                                <option value="4">火烧车</option>
+                                                <option value="5">其他</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>评估描述：</label>
+                                    <div class="col-xs-21 col-sm-21 col-md-21">
+                                        <textarea name="secondEstimateDesc" rows="3" class="form-control required"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="panel panel-default transferBox hide">
+							<div class="panel-heading">
+								<h3 class="panel-title">过户信息</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">过户日期：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="date" placeholder="请输入过户日期"  class="form-control date" required="" aria-required="true">
+										</div>
+									</div>
+									<div class="input-tip hide">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">开票价：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<input type="text" name="realInvoicePrice" readonly="readonly" placeholder="请输入开票价"  class="form-control number" required="" aria-required="true">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">备注：</label>
+									<div class="col-xs-21 col-sm-21 col-md-21">	
+										<textarea name="transferMemo" rows="3" class="form-control" aria-required="true" required="" aria-required="true"></textarea>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</form>
+						<div class="panel panel-default processView hide">
+							<div class="panel-heading">
+								<h3 class="panel-title">流程意见</h3>
+							</div>
+							<div class="panel-body">
+								<form id="opinionForm33" class="form-horizontal">
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 control-label">意见结论：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+											<label class="radio-inline">
+												<input type="radio" aria-required="true" required="" value="1" name="conclusion" checked="checked">同意</label>&nbsp;&nbsp;&nbsp;&nbsp;
+											<label class="radio-inline">
+												<input type="radio" aria-required="true" required="" value="0" name="conclusion">不同意</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">意见说明：</label>
+									<div class="col-xs-21 col-sm-21 col-md-21">	
+										<textarea name="opinion" id="opinion" rows="3" class="form-control"></textarea>
+									</div>
+								</div>
+								</form>
+							</div>
+						</div>
+						<div class="form-group form-group-sm btn_box hide" fors="1">
+							<div class="col-xs-24 col-sm-24 col-md-24 text-right btnBox" >
+								<button  class="btn btn-primary submit" type="button" fors="0"><span>提交</span></button>
+								<button  class="btn btn-primary preservation" type="button" fors="1"><span>保存</span></button>
+								<button  class="btn btn-primary hide revoke" type="button" fors="2"><span>撤销</span></button>
+								<button class="btn btn-white cancel" type="button"><span>取消</span></button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm btn_box hide" fors="3">
+							<div class="col-xs-24 col-sm-24 col-md-24 text-right btnBox" >
+								<button  class="btn btn-primary submit" type="button" fors="0"><span>提交</span></button>
+								<button  class="btn btn-primary preservation" type="button" fors="1"><span>保存</span></button>
+								<button class="btn btn-white cancel" type="button"><span>取消</span></button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm btn_box hide" fors="4">
+							<div class="col-xs-24 col-sm-24 col-md-24 text-right btnBox" >
+								<button  class="btn btn-primary submit" type="button" fors="0"><span>提交下一步</span></button>
+								<button class="btn btn-white cancel" type="button"><span>取消</span></button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm btn_box hide" fors="5">
+							<div class="col-xs-24 col-sm-24 col-md-24 text-right btnBox">
+								<button  class="btn btn-primary submit" type="button" fors="0"><span>完成评估</span></button>
+								<button  class="btn btn-primary preservation" type="button" fors="1"><span>保存</span></button>
+								<button  class="btn btn-primary back2pre" type="button"><span>退回上一步</span></button>
+								<button class="btn btn-white cancel" type="button"><span>取消</span></button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm btn_box hide" fors="9">
+							<div class="col-xs-24 col-sm-24 col-md-24 text-right btnBox" >
+								<button  class="btn btn-primary hide" type="button" id="btn_closedAss"><span>关闭评估</span></button>
+								<button  class="btn btn-primary back2pre" type="button"><span>退回上一步</span></button>
+								<button class="btn btn-white cancel" type="button"><span>取消</span></button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm btn_box hide" fors="10">
+							<div class="col-xs-24 col-sm-24 col-md-24 text-right btnBox">
+								<!--<button class="btn btn-primary reEvaluation hide" type="button"><span>取消复评</span></button>-->
+								<button class="btn btn-white cancel" type="button"><span>返回</span></button>
+							</div>
+						</div>
+						<div class="form-group form-group-sm btn_box hide" fors="11">
+							<div class="col-xs-24 col-sm-24 col-md-24 text-right btnBox" >
+								<button  class="btn btn-primary submit" type="button" fors="0"><span>提交</span></button>
+								<button  class="btn btn-primary preservation" type="button" fors="1"><span>保存</span></button>
+								<button class="btn btn-white cancel" type="button"><span>取消</span></button>
+							</div>
+						</div>
+
+				</div>
+			</div>
+		</div>
+		<div id="task" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+						<h4 class="modal-title">任务提交</h4>
+					</div>
+					<div class="modal-body" style="padding-bottom: 50px;">
+						<div class="col-xs-24 col-sm-24 col-md-24 text-left">
+							<label>请选择流转人员&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							<label>后续流程环节：<span id="nextFlowNodeName"></span></label>
+						</div>
+						<table id="table_3" data-ajax="dataLoad_3">
+							<thead>
+								<tr>
+									<th data-switchable="false" data-formatter="handle_3" data-events="tableEvent_3">选择</th>
+									<th data-field="organization">机构名称</th>
+									<th data-field="department">部门</th>
+									<th data-field="userName">姓名 </th>
+									<th data-field="taskCount">当前代办量</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<div class="col-xs-24 col-sm-24 col-md-24 text-right">
+						    <button class="btn btn-primary loanStart3" type="button"><span>确定</span></button>
+							<button data-dismiss="modal" class="btn btn-default">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+	</body>
+</html>
+<script src="../../../common/plugs/viewer/js/viewer.js"></script>
+<script src="../../../js/secondHandCar/common/registered.js"></script>

@@ -1,0 +1,141 @@
+<style type="text/css">
+	.ltFirst, .gtFirst{ display: inline-block}
+	.table-hover th, .table-hover td{ border:1px solid #e7eaec!important;}
+	.panelMargin20{ margin:0 15px 15px;}
+	.table-hover li ul li{ list-style: none; margin: 0; padding: 0}
+</style>
+<link rel="stylesheet" href="../../../common/plugs/viewer/css/viewer.min.css">
+<div class="row">
+  <div class="col-md-24 col-xs-24 col-sm-24">
+		<div class="ibox float-e-margins" id="documentList_credit">
+			<form id="creditInfoForm" class="form-horizontal">
+				<fieldset class="disabledBox">
+					<!--<fieldset class="disabledClass">
+						<div class="panel panel-default">
+							[>基本信息<]
+							<div class="panel-heading">
+								<h3 class="panel-title">征信详情</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">客户来源：</label>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<select name="source" class="form-control">
+												<option value="">--请选择--</option>
+												<option value="1">个人客户</option>
+												<option value="2">车商线下客户</option>
+												<option value="3">车商线上客户</option>
+											</select>
+										</div>
+									</div>
+									<div class="input-tip Number">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">车果流水号：</label>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<input type="text" name="serialNumber" placeholder="请输入车果流水号" class="form-control" required="" aria-required="true">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">客户名称：</label>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<div class="input-group input-group-sm">
+												<input type="text" placeholder="请输入客户名称" name="customerName" required="" aria-required="true" minlength="2" class="form-control"><span class="input-group-btn">
+                          <button type="button" class="btn btn-primary">...</button></span>
+												<input type="hidden" id="creditId" name="id">
+												<input type="hidden" id="businessId" name="businessId">
+											</div>
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">证件类型：</label>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<select name="cardType" class="form-control">
+												<option value="">--请选择--</option>
+												<option value="1">身份证</option>
+												<option value="2">军官证</option>
+												<option value="3">侨胞证</option>
+												<option value="4">外籍人士</option>
+											</select>
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">证件号码：</label>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<input type="text" name="cardNo" placeholder="请输入证件号码" class="form-control" required="" aria-required="true">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">婚姻状态：</label>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<select name="maritalStatus" class="form-control">
+												<option value="">--请选择--</option>
+												<option value="1">已婚</option>
+												<option value="2">未婚</option>
+												<option value="3">离异</option>
+												<option value="4">丧偶</option>
+											</select>
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">调查银行：</label>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<input type="hidden" name="inquryBank" id="inquryBank" placeholder="请输入合作银行" class="form-control" required="" aria-required="true">
+											<select name="inquryBankId" id="bankDeraler" class="form-control">
+
+											</select>
+										</div>
+									</div>
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">客户经理：</label>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<input type="text" name="customerManager" placeholder="请输入客户经理" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-md-3 col-xs-3 col-sm-3 control-label">业务小组：</label>
+										<div class="col-md-5 cl-sm-5 col-xs-5">
+											<input type="text" name="businessGroup" placeholder="请输入业务小组" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>-->
+					<div class="partyBox"> </div>
+					<div id="wife"> </div>
+					<div id="partyBox"> </div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- 查看详情 -->
+<div id="showDetail" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+				<h4 class="modal-title">备注信息</h4>
+			</div>
+			<div class="modal-body" style="height:500px; overflow-y: auto">
+				<form id="courtForm" class="form-horizontal">
+					<div class="form-group form-group-sm hide" id="court-detail">
+
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button id="btn_yes" class="btn btn-info">确定</button>
+				<button data-dismiss="modal" class="btn btn-default">关闭</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../../../common/plugs/viewer/js/viewer.js"></script>
+<script type="text/javascript" src="../../../js/common/commonCreditInfo/credit.js"></script>
